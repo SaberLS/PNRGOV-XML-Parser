@@ -3,5 +3,7 @@
 						<GivenName>PAWEL</GivenName>
 						<Surname>ZIELINSKI</Surname>
 					</Passenger>
+          			<DepartureAirport LocationCode="FRA"/>
+			<ArrivalAirport LocationCode="WRO"/>
 					<SeatNumber CabinClass="M">006D</SeatNumber>
 				</BoardingNumber>

@@ -120,18 +120,19 @@ enum yysymbol_kind_t
   YYSYMBOL_TAG_C = 8,                      /* TAG_C  */
   YYSYMBOL_TEXT = 9,                       /* TEXT  */
   YYSYMBOL_YYACCEPT = 10,                  /* $accept  */
-  YYSYMBOL_tag = 11,                       /* tag  */
-  YYSYMBOL_tags = 12,                      /* tags  */
-  YYSYMBOL_content = 13,                   /* content  */
-  YYSYMBOL_self_closing_tag = 14,          /* self_closing_tag  */
-  YYSYMBOL_opening_tag = 15,               /* opening_tag  */
-  YYSYMBOL_closing_tag = 16,               /* closing_tag  */
-  YYSYMBOL_open_tag = 17,                  /* open_tag  */
-  YYSYMBOL_tag_name = 18,                  /* tag_name  */
-  YYSYMBOL_attributeName = 19,             /* attributeName  */
-  YYSYMBOL_attributeValue = 20,            /* attributeValue  */
-  YYSYMBOL_attribute = 21,                 /* attribute  */
-  YYSYMBOL_attributes = 22                 /* attributes  */
+  YYSYMBOL_document = 11,                  /* document  */
+  YYSYMBOL_tag = 12,                       /* tag  */
+  YYSYMBOL_tags = 13,                      /* tags  */
+  YYSYMBOL_content = 14,                   /* content  */
+  YYSYMBOL_self_closing_tag = 15,          /* self_closing_tag  */
+  YYSYMBOL_opening_tag = 16,               /* opening_tag  */
+  YYSYMBOL_closing_tag = 17,               /* closing_tag  */
+  YYSYMBOL_open_tag = 18,                  /* open_tag  */
+  YYSYMBOL_tag_name = 19,                  /* tag_name  */
+  YYSYMBOL_attributeName = 20,             /* attributeName  */
+  YYSYMBOL_attributeValue = 21,            /* attributeValue  */
+  YYSYMBOL_attribute = 22,                 /* attribute  */
+  YYSYMBOL_attributes = 23                 /* attributes  */
 };
 typedef enum yysymbol_kind_t yysymbol_kind_t;
 
@@ -457,18 +458,18 @@ union yyalloc
 #endif /* !YYCOPY_NEEDED */
 
 /* YYFINAL -- State number of the termination state.  */
-#define YYFINAL  8
+#define YYFINAL  10
 /* YYLAST -- Last index in YYTABLE.  */
 #define YYLAST   19
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  10
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  13
+#define YYNNTS  14
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  19
+#define YYNRULES  21
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  30
+#define YYNSTATES  31
 
 /* YYMAXUTOK -- Last valid token kind.  */
 #define YYMAXUTOK   264
@@ -516,10 +517,11 @@ static const yytype_int8 yytranslate[] =
 
 #if YYDEBUG
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
-static const yytype_int8 yyrline[] =
+static const yytype_uint8 yyrline[] =
 {
-       0,    28,    28,    29,    33,    34,    38,    39,    40,    44,
-      56,    67,    77,    88,    92,    96,   100,   111,   119,   126
+       0,    27,    27,    31,    35,    42,    54,    64,    76,    84,
+      85,    89,   102,   116,   127,   138,   142,   146,   150,   161,
+     169,   176
 };
 #endif
 
@@ -537,9 +539,9 @@ static const char *const yytname[] =
 {
   "\"end of file\"", "error", "\"invalid token\"", "SIGN_EQ",
   "SIGN_DOUBLE_TICK", "CLOSING_TAG_O", "TAG_O", "SELF_CLOSING_C", "TAG_C",
-  "TEXT", "$accept", "tag", "tags", "content", "self_closing_tag",
-  "opening_tag", "closing_tag", "open_tag", "tag_name", "attributeName",
-  "attributeValue", "attribute", "attributes", YY_NULLPTR
+  "TEXT", "$accept", "document", "tag", "tags", "content",
+  "self_closing_tag", "opening_tag", "closing_tag", "open_tag", "tag_name",
+  "attributeName", "attributeValue", "attribute", "attributes", YY_NULLPTR
 };
 
 static const char *
@@ -563,9 +565,10 @@ yysymbol_name (yysymbol_kind_t yysymbol)
    STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-      -5,    -7,     7,    -8,    -6,    -1,    -8,    -8,    -8,    -8,
-      -5,    -8,     4,    -8,     8,    -8,    -3,    -8,    -7,    -8,
-       6,    -8,    -8,    -8,     5,     3,    -8,    -8,    10,    -8
+      -3,    -7,     8,    -8,    -3,    -8,    -5,     1,    -8,    -8,
+      -8,    -8,    -8,    -3,     6,    -8,     9,    -8,    -2,    -7,
+      -8,    10,    -8,    -8,    -8,     5,     7,    -8,    -8,    11,
+      -8
 };
 
 /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -573,23 +576,24 @@ static const yytype_int8 yypact[] =
    means the default is an error.  */
 static const yytype_int8 yydefact[] =
 {
-       0,     0,     0,     2,     8,    19,    13,    12,     1,     7,
-       5,     6,     0,    14,     0,    18,     0,     4,     0,     3,
-       0,     9,    10,    17,     0,     0,    16,    11,     0,    15
+       3,     0,     0,     7,     2,     4,    10,    21,    15,    14,
+       1,     6,     9,     8,     0,    16,     0,    20,     0,     0,
+       5,     0,    11,    12,    19,     0,     0,    18,    13,     0,
+      17
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-      -8,    15,     9,    -8,    -8,    -8,    -8,    -8,    -2,    -8,
-      -8,     1,    -8
+      -8,    -8,    -4,    12,    -8,    -8,    -8,    -8,    -8,     0,
+      -8,    -8,    -1,    -8
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-       0,    10,    11,    12,     3,     4,    19,     5,     7,    14,
-      26,    15,    16
+       0,     2,     3,     4,    14,     5,     6,    20,     7,     9,
+      16,    27,    17,    18
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -597,37 +601,40 @@ static const yytype_int8 yydefgoto[] =
    number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-       1,     1,     6,     9,    21,    22,    13,     8,    13,    18,
-      25,    20,    28,    27,    29,     2,    24,    23,     0,    17
+      11,     1,     8,     1,    12,    22,    23,    15,    10,    11,
+      15,    19,    21,    28,    26,    30,    29,    24,    13,    25
 };
 
 static const yytype_int8 yycheck[] =
 {
-       6,     6,     9,     9,     7,     8,     9,     0,     9,     5,
-       4,     3,     9,     8,     4,     0,    18,    16,    -1,    10
+       4,     6,     9,     6,     9,     7,     8,     9,     0,    13,
+       9,     5,     3,     8,     4,     4,     9,    18,     6,    19
 };
 
 /* YYSTOS[STATE-NUM] -- The symbol kind of the accessing symbol of
    state STATE-NUM.  */
 static const yytype_int8 yystos[] =
 {
-       0,     6,    11,    14,    15,    17,     9,    18,     0,     9,
-      11,    12,    13,     9,    19,    21,    22,    12,     5,    16,
-       3,     7,     8,    21,    18,     4,    20,     8,     9,     4
+       0,     6,    11,    12,    13,    15,    16,    18,     9,    19,
+       0,    12,     9,    13,    14,     9,    20,    22,    23,     5,
+      17,     3,     7,     8,    22,    19,     4,    21,     8,     9,
+       4
 };
 
 /* YYR1[RULE-NUM] -- Symbol kind of the left-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr1[] =
 {
-       0,    10,    11,    11,    12,    12,    13,    13,    13,    14,
-      15,    16,    17,    18,    19,    20,    21,    22,    22,    22
+       0,    10,    11,    11,    12,    12,    13,    13,    14,    14,
+      14,    15,    16,    17,    18,    19,    20,    21,    22,    23,
+      23,    23
 };
 
 /* YYR2[RULE-NUM] -- Number of symbols on the right-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr2[] =
 {
-       0,     2,     1,     3,     2,     1,     1,     1,     0,     3,
-       3,     3,     2,     1,     1,     3,     3,     2,     1,     0
+       0,     2,     1,     0,     1,     3,     2,     1,     1,     1,
+       0,     3,     3,     3,     2,     1,     1,     3,     3,     2,
+       1,     0
 };
 
 
@@ -1360,65 +1367,147 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-  case 2: /* tag: self_closing_tag  */
-#line 28 "pnr.y"
-                     {printf("%s", (yyvsp[0].str)); free((yyvsp[0].str)); }
-#line 1367 "pnr.tab.c"
+  case 2: /* document: tags  */
+#line 27 "pnr.y"
+         {
+        printf("FULL document:\n%s\n", (yyvsp[0].str));
+        free((yyvsp[0].str));
+    }
+#line 1377 "pnr.tab.c"
     break;
 
-  case 3: /* tag: opening_tag content closing_tag  */
-#line 29 "pnr.y"
-                                      { free((yyvsp[-2].str)); }
-#line 1373 "pnr.tab.c"
+  case 3: /* document: %empty  */
+#line 31 "pnr.y"
+      { printf("EMPTY DOCUMENT\n"); }
+#line 1383 "pnr.tab.c"
     break;
 
-  case 8: /* content: %empty  */
-#line 40 "pnr.y"
-      {;}
-#line 1379 "pnr.tab.c"
+  case 4: /* tag: self_closing_tag  */
+#line 35 "pnr.y"
+                     {
+        char *result = malloc(strlen((yyvsp[0].str))+3);
+        sprintf(result, "%s", (yyvsp[0].str));
+
+        free((yyvsp[0].str));
+        (yyval.str) = result;
+    }
+#line 1395 "pnr.tab.c"
     break;
 
-  case 9: /* self_closing_tag: open_tag attributes SELF_CLOSING_C  */
-#line 44 "pnr.y"
+  case 5: /* tag: opening_tag content closing_tag  */
+#line 42 "pnr.y"
+                                      {
+        char *result = malloc(strlen((yyvsp[-2].str)) + strlen((yyvsp[-1].str)) + strlen((yyvsp[0].str)) + 5);
+        sprintf(result, "%s%s%s", (yyvsp[-2].str), (yyvsp[-1].str), (yyvsp[0].str));
+
+        free((yyvsp[-2].str));
+        free((yyvsp[-1].str));
+        free((yyvsp[0].str));
+        (yyval.str) = result;
+    }
+#line 1409 "pnr.tab.c"
+    break;
+
+  case 6: /* tags: tags tag  */
+#line 54 "pnr.y"
+             {
+        char *result = malloc(strlen((yyvsp[-1].str)) + strlen((yyvsp[0].str)) + 3);
+        sprintf(result, "%s%s", (yyvsp[-1].str), (yyvsp[0].str));
+
+        // printf("tags tag: %s\n", result);
+
+        free((yyvsp[-1].str));
+        free((yyvsp[0].str));
+        (yyval.str) = result;
+    }
+#line 1424 "pnr.tab.c"
+    break;
+
+  case 7: /* tags: tag  */
+#line 64 "pnr.y"
+          {
+        char *result = malloc(strlen((yyvsp[0].str)) + 3);
+        sprintf(result, "%s", (yyvsp[0].str));
+
+        // printf("tag: %s\n", result);
+
+        free((yyvsp[0].str));
+        (yyval.str) = result;
+    }
+#line 1438 "pnr.tab.c"
+    break;
+
+  case 8: /* content: tags  */
+#line 76 "pnr.y"
+         {
+        char *result = malloc(strlen((yyvsp[0].str)) + 2);
+        // printf("result: %s\n", $1);
+        sprintf(result, "\n\t%s", (yyvsp[0].str));
+
+        free((yyvsp[0].str));
+        (yyval.str) = result;
+    }
+#line 1451 "pnr.tab.c"
+    break;
+
+  case 9: /* content: TEXT  */
+#line 84 "pnr.y"
+           { (yyval.str) = strdup((yyvsp[0].str)); free((yyvsp[0].str));}
+#line 1457 "pnr.tab.c"
+    break;
+
+  case 10: /* content: %empty  */
+#line 85 "pnr.y"
+      { (yyval.str) = strdup(""); }
+#line 1463 "pnr.tab.c"
+    break;
+
+  case 11: /* self_closing_tag: open_tag attributes SELF_CLOSING_C  */
+#line 89 "pnr.y"
                                        {
-        char *result = malloc(strlen((yyvsp[-2].str)) + strlen((yyvsp[-1].str)) + 3);
-        sprintf(result, "%s %s/>\n", (yyvsp[-2].str), (yyvsp[-1].str));
+        char *result = malloc(strlen((yyvsp[-2].str)) + strlen((yyvsp[-1].str)) + 4);
+        sprintf(result, "\n%s%s/>", (yyvsp[-2].str), (yyvsp[-1].str));
         // printf("%s", result);
+
         free((yyvsp[-2].str));
         free((yyvsp[-1].str));
 
         (yyval.str) = result;
     }
-#line 1393 "pnr.tab.c"
+#line 1478 "pnr.tab.c"
     break;
 
-  case 10: /* opening_tag: open_tag attributes TAG_C  */
-#line 56 "pnr.y"
+  case 12: /* opening_tag: open_tag attributes TAG_C  */
+#line 102 "pnr.y"
                               {
-        char *result = malloc(strlen((yyvsp[-2].str)) + 3);
-        sprintf(result, "<%s ", (yyvsp[-2].str));
+        char *result = malloc(strlen((yyvsp[-2].str)) + strlen((yyvsp[-1].str)) + 3);
+        sprintf(result, "\n%s%s>", (yyvsp[-2].str), (yyvsp[-1].str));
+
+        // printf("OPENING TAG:\t%s\n", result);
+
         free((yyvsp[-2].str));
         free((yyvsp[-1].str));
 
         (yyval.str) = result;
     }
-#line 1406 "pnr.tab.c"
+#line 1494 "pnr.tab.c"
     break;
 
-  case 11: /* closing_tag: CLOSING_TAG_O tag_name TAG_C  */
-#line 67 "pnr.y"
+  case 13: /* closing_tag: CLOSING_TAG_O tag_name TAG_C  */
+#line 116 "pnr.y"
                                  {
-        char *result = malloc(strlen((yyvsp[-1].str)) + 4);
-        sprintf(result, "</%s>", (yyvsp[-1].str));
+        char *result = malloc(strlen((yyvsp[-1].str)) + 5);
+        sprintf(result, "\n</%s>", (yyvsp[-1].str));
+        // printf("CLOSING TAG:\t%s \n",result);
 
         free((yyvsp[-1].str));
         (yyval.str) = result;
     }
-#line 1418 "pnr.tab.c"
+#line 1507 "pnr.tab.c"
     break;
 
-  case 12: /* open_tag: TAG_O tag_name  */
-#line 77 "pnr.y"
+  case 14: /* open_tag: TAG_O tag_name  */
+#line 127 "pnr.y"
                    {
         char *result = malloc(strlen((yyvsp[0].str)) + 2);
         sprintf(result, "<%s", (yyvsp[0].str));
@@ -1427,42 +1516,42 @@ yyreduce:
         free((yyvsp[0].str));
         (yyval.str) = result;
     }
-#line 1431 "pnr.tab.c"
+#line 1520 "pnr.tab.c"
     break;
 
-  case 13: /* tag_name: TEXT  */
-#line 88 "pnr.y"
-         {(yyval.str) = strdup((yyvsp[0].str));}
-#line 1437 "pnr.tab.c"
+  case 15: /* tag_name: TEXT  */
+#line 138 "pnr.y"
+         {(yyval.str) = strdup((yyvsp[0].str)); free((yyvsp[0].str));}
+#line 1526 "pnr.tab.c"
     break;
 
-  case 14: /* attributeName: TEXT  */
-#line 92 "pnr.y"
+  case 16: /* attributeName: TEXT  */
+#line 142 "pnr.y"
          { (yyval.str) = strdup((yyvsp[0].str)); free((yyvsp[0].str));}
-#line 1443 "pnr.tab.c"
+#line 1532 "pnr.tab.c"
     break;
 
-  case 15: /* attributeValue: SIGN_DOUBLE_TICK TEXT SIGN_DOUBLE_TICK  */
-#line 96 "pnr.y"
-                                           { (yyval.str) = strdup((yyvsp[-1].str)); }
-#line 1449 "pnr.tab.c"
+  case 17: /* attributeValue: SIGN_DOUBLE_TICK TEXT SIGN_DOUBLE_TICK  */
+#line 146 "pnr.y"
+                                           { (yyval.str) = strdup((yyvsp[-1].str)); free((yyvsp[-1].str));}
+#line 1538 "pnr.tab.c"
     break;
 
-  case 16: /* attribute: attributeName SIGN_EQ attributeValue  */
-#line 100 "pnr.y"
+  case 18: /* attribute: attributeName SIGN_EQ attributeValue  */
+#line 150 "pnr.y"
                                          {
-        char *result = malloc(strlen((yyvsp[-2].str)) + strlen((yyvsp[0].str)) + 2);
-        sprintf(result, "%s=%s", (yyvsp[-2].str), (yyvsp[0].str));
+        char *result = malloc(strlen((yyvsp[-2].str)) + strlen((yyvsp[0].str)) + 6);
+        sprintf(result, "%s=\"%s\"", (yyvsp[-2].str), (yyvsp[0].str));
 
         free((yyvsp[-2].str));
         free((yyvsp[0].str));
         (yyval.str) = result;
     }
-#line 1462 "pnr.tab.c"
+#line 1551 "pnr.tab.c"
     break;
 
-  case 17: /* attributes: attributes attribute  */
-#line 111 "pnr.y"
+  case 19: /* attributes: attributes attribute  */
+#line 161 "pnr.y"
                         {
         char *result = malloc(strlen((yyvsp[-1].str)) + strlen((yyvsp[0].str)) + 2);
         sprintf(result, "%s %s", (yyvsp[-1].str), (yyvsp[0].str));
@@ -1471,29 +1560,29 @@ yyreduce:
         free((yyvsp[0].str));
         (yyval.str) = result;
     }
-#line 1475 "pnr.tab.c"
+#line 1564 "pnr.tab.c"
     break;
 
-  case 18: /* attributes: attribute  */
-#line 119 "pnr.y"
+  case 20: /* attributes: attribute  */
+#line 169 "pnr.y"
                   {
         char *result = malloc(strlen((yyvsp[0].str)) + 2);
-        sprintf(result, "%s", (yyvsp[0].str));
+        sprintf(result, " %s", (yyvsp[0].str));
 
         free((yyvsp[0].str));
         (yyval.str) = result;
     }
-#line 1487 "pnr.tab.c"
+#line 1576 "pnr.tab.c"
     break;
 
-  case 19: /* attributes: %empty  */
-#line 126 "pnr.y"
-      { ; }
-#line 1493 "pnr.tab.c"
+  case 21: /* attributes: %empty  */
+#line 176 "pnr.y"
+      { (yyval.str) = strdup("");}
+#line 1582 "pnr.tab.c"
     break;
 
 
-#line 1497 "pnr.tab.c"
+#line 1586 "pnr.tab.c"
 
       default: break;
     }
@@ -1717,7 +1806,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 129 "pnr.y"
+#line 179 "pnr.y"
 
 int main() {
    yyparse();

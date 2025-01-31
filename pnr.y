@@ -23,28 +23,74 @@ int licznik_bledow=0;
 
 %type <str> attributeName attributeValue attribute tag_name tag self_closing_tag open_tag attributes opening_tag closing_tag tags content
 %%
+document:
+    tags {
+        printf("FULL document:\n%s\n", $1);
+        free($1);
+    }
+    | { printf("EMPTY DOCUMENT\n"); }  // Obsługa pustego pliku
+    ;
 
 tag:
-    self_closing_tag {printf("%s", $1); free($1); }
-    | opening_tag content closing_tag { free($1); }
+    self_closing_tag {
+        char *result = malloc(strlen($1)+3);
+        sprintf(result, "%s", $1);
+
+        free($1);
+        $$ = result;
+    }
+    | opening_tag content closing_tag {
+        char *result = malloc(strlen($1) + strlen($2) + strlen($3) + 5);
+        sprintf(result, "%s%s%s", $1, $2, $3);
+
+        free($1);
+        free($2);
+        free($3);
+        $$ = result;
+    }
     ;
 
 tags:
-    tag tags
-    | tag
+    tags tag {
+        char *result = malloc(strlen($1) + strlen($2) + 3);
+        sprintf(result, "%s%s", $1, $2);
+
+        // printf("tags tag: %s\n", result);
+
+        free($1);
+        free($2);
+        $$ = result;
+    }
+    | tag {
+        char *result = malloc(strlen($1) + 3);
+        sprintf(result, "%s", $1);
+
+        // printf("tag: %s\n", result);
+
+        free($1);
+        $$ = result;
+    }
     ;
 
 content:
-    tags
-    | TEXT
-    | {;}
+    tags {
+        char *result = malloc(strlen($1) + 2);
+        // printf("result: %s\n", $1);
+        sprintf(result, "\n\t%s", $1);
+
+        free($1);
+        $$ = result;
+    }
+    | TEXT { $$ = strdup($1); free($1);}
+    | { $$ = strdup(""); }  // <-- Obsługa pustego contentu
     ;
 
 self_closing_tag:
     open_tag attributes SELF_CLOSING_C {
-        char *result = malloc(strlen($1) + strlen($2) + 3);
-        sprintf(result, "%s %s/>\n", $1, $2);
+        char *result = malloc(strlen($1) + strlen($2) + 4);
+        sprintf(result, "\n%s%s/>", $1, $2);
         // printf("%s", result);
+
         free($1);
         free($2);
 
@@ -54,8 +100,11 @@ self_closing_tag:
 
 opening_tag:
     open_tag attributes TAG_C {
-        char *result = malloc(strlen($1) + 3);
-        sprintf(result, "<%s ", $1);
+        char *result = malloc(strlen($1) + strlen($2) + 3);
+        sprintf(result, "\n%s%s>", $1, $2);
+
+        // printf("OPENING TAG:\t%s\n", result);
+
         free($1);
         free($2);
 
@@ -65,8 +114,9 @@ opening_tag:
 
 closing_tag:
     CLOSING_TAG_O tag_name TAG_C {
-        char *result = malloc(strlen($2) + 4);
-        sprintf(result, "</%s>", $2);
+        char *result = malloc(strlen($2) + 5);
+        sprintf(result, "\n</%s>", $2);
+        // printf("CLOSING TAG:\t%s \n",result);
 
         free($2);
         $$ = result;
@@ -85,7 +135,7 @@ open_tag:
     ;
 
 tag_name:
-    TEXT {$$ = strdup($1);}
+    TEXT {$$ = strdup($1); free($1);}
     ;
 
 attributeName:
@@ -93,13 +143,13 @@ attributeName:
     ;
 
 attributeValue:
-    SIGN_DOUBLE_TICK TEXT SIGN_DOUBLE_TICK { $$ = strdup($2); }
+    SIGN_DOUBLE_TICK TEXT SIGN_DOUBLE_TICK { $$ = strdup($2); free($2);}
     ;
 
 attribute:
     attributeName SIGN_EQ attributeValue {
-        char *result = malloc(strlen($1) + strlen($3) + 2);
-        sprintf(result, "%s=%s", $1, $3);
+        char *result = malloc(strlen($1) + strlen($3) + 6);
+        sprintf(result, "%s=\"%s\"", $1, $3);
 
         free($1);
         free($3);
@@ -118,12 +168,12 @@ attributes:
     }
     |   attribute {
         char *result = malloc(strlen($1) + 2);
-        sprintf(result, "%s", $1);
+        sprintf(result, " %s", $1);
 
         free($1);
         $$ = result;
     }
-    | { ; }
+    | { $$ = strdup("");}
     ;
 
 %%
