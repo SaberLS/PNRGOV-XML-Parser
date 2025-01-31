@@ -361,8 +361,8 @@ struct yy_trans_info
 	};
 static const flex_int16_t yy_accept[16] =
     {   0,
-        0,    0,   10,    8,    6,    7,    4,    8,    5,    1,
-        3,    6,    2,    5,    0
+        0,    0,   10,    5,    6,    7,    4,    5,    1,    3,
+        8,    5,    6,    2,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -371,16 +371,16 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    2,    1,    4,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    5,    6,    6,    6,
-        6,    6,    6,    6,    6,    6,    6,    1,    1,    7,
-        8,    9,    1,    1,    6,    6,    6,    6,    6,    6,
-        6,    6,    6,    6,    6,    6,    6,    6,    6,    6,
-        6,    6,    6,    6,    6,    6,    6,    6,    6,    6,
-        1,    1,    1,    1,    1,    1,    6,    6,    6,    6,
+        1,    1,    1,    1,    1,    1,    5,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    6,
+        7,    8,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
 
-        6,    6,    6,    6,    6,    6,    6,    6,    6,    6,
-        6,    6,    6,    6,    6,    6,    6,    6,    6,    6,
-        6,    6,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -397,35 +397,35 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static const YY_CHAR yy_meta[10] =
+static const YY_CHAR yy_meta[9] =
     {   0,
-        1,    1,    1,    1,    1,    1,    1,    1,    1
+        1,    2,    2,    2,    1,    2,    2,    2
     } ;
 
-static const flex_int16_t yy_base[16] =
+static const flex_int16_t yy_base[17] =
     {   0,
-        0,    0,   15,   16,   12,   16,   16,    4,    6,   16,
-       16,    9,   16,    4,   16
+        0,    0,   13,    0,   10,   14,   14,    3,   14,   14,
+       14,    0,    8,   14,   14,    8
     } ;
 
-static const flex_int16_t yy_def[16] =
+static const flex_int16_t yy_def[17] =
     {   0,
-       15,    1,   15,   15,   15,   15,   15,   15,   15,   15,
-       15,   15,   15,   15,    0
+       15,    1,   15,   16,   15,   15,   15,   16,   15,   15,
+       15,   16,   15,   15,    0,   15
     } ;
 
-static const flex_int16_t yy_nxt[26] =
+static const flex_int16_t yy_nxt[23] =
     {   0,
-        4,    5,    6,    7,    8,    9,   10,   11,    4,   14,
-       12,   14,   13,   12,   15,    3,   15,   15,   15,   15,
-       15,   15,   15,   15,   15
+        4,    5,    6,    7,    8,    9,   10,   11,   12,   13,
+       14,   13,   15,    3,   15,   15,   15,   15,   15,   15,
+       15,   15
     } ;
 
-static const flex_int16_t yy_chk[26] =
+static const flex_int16_t yy_chk[23] =
     {   0,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,   14,
-       12,    9,    8,    5,    3,   15,   15,   15,   15,   15,
-       15,   15,   15,   15,   15
+        1,    1,    1,    1,    1,    1,    1,    1,   16,   13,
+        8,    5,    3,   15,   15,   15,   15,   15,   15,   15,
+       15,   15
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -700,7 +700,7 @@ yy_match:
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 16 );
+		while ( yy_base[yy_current_state] != 14 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -751,18 +751,14 @@ YY_RULE_SETUP
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 16 "pnrlex.l"
+#line 17 "pnrlex.l"
 {/* Ignoruj białe znaki SPACE, TAB */};
 	YY_BREAK
 case 7:
 /* rule 7 can match eol */
 YY_RULE_SETUP
-#line 17 "pnrlex.l"
+#line 18 "pnrlex.l"
 {yylineno++; /* Nowa linia */};
-	YY_BREAK
-case YY_STATE_EOF(INITIAL):
-#line 19 "pnrlex.l"
-{ /* koniec pliku */ return 0; };
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
@@ -774,7 +770,9 @@ YY_RULE_SETUP
 #line 21 "pnrlex.l"
 ECHO;
 	YY_BREAK
-#line 778 "lex.yy.c"
+#line 774 "lex.yy.c"
+case YY_STATE_EOF(INITIAL):
+	yyterminate();
 
 	case YY_END_OF_BUFFER:
 		{

@@ -49,14 +49,14 @@ tag_name:
 attributeName:
     TEXT {
         printf("attributeName: %s\n", $1);
-        $$ = $1;  /* Przekazujemy wartość */
+        $$ = $1;  /* Przekazuje wartość do attribute */
     }
     ;
 
 attributeValue:
     '"' TEXT '"' {
         printf("attributeValue: %s\n", $2);
-        $$ = $2;  /* Przekazujemy wartość */
+        $$ = $2;  /* Przekazuje wartość do attribute*/
         }
     ;
 
@@ -66,7 +66,7 @@ attribute:
         }
 
 attributes:
-    attribute
+    attribute attributes
     | /* pusty - pozwala na brak atrybutów */
     ;
 
