@@ -26,19 +26,23 @@ int licznik_bledow=0;
 
 
 tag:
-    self_closing_tag {printf("self_closing_tag\n");}
-    |   opening_tag tag_content closing_tag {printf("OPEN  CONTENT CLOSE");}
+    self_closing_tag {
+        printf("self_closing_tag\n");
+    }
+    |   opening_tag tag_content closing_tag {
+            printf("OPEN  CONTENT CLOSE");
+        }
     ;
 
 tags:
     tag tags
-    | tag
+    |   tag
     ;
 
 tag_content:
     tags
-    | TEXT
-    | /* pusty */
+    |   TEXT
+    |   /* pusty */
     ;
 
 self_closing_tag:
@@ -48,25 +52,27 @@ self_closing_tag:
     ;
 
 opening_tag:
-    open_tag attributes TAG_C {printf("OPENING TAG!!\n");}
+    open_tag attributes TAG_C {
+        printf("OPENING TAG!!\n");
+    }
     ;
 
 closing_tag:
     CLOSING_TAG_O tag_name TAG_C {
         printf("CLOSING TAG!!!\n");
-    };
+    }
     ;
 
 open_tag:
-    TAG_O tag_name{
+    TAG_O tag_name {
         printf("Open tag: <%s\n", $2);
-        }
+    }
     ;
 
 tag_name:
     TEXT {
         printf("tag_name: %s\n", $1);
-        }
+    }
     ;
 
 attributeName:
@@ -79,19 +85,19 @@ attributeName:
 attributeValue:
     str {
         printf("attributeValue: %s\n", $1);
-        }
+    }
     ;
 
 str:
     SIGN_DOUBLE_TICK TEXT SIGN_DOUBLE_TICK {
         $$ = $2;  /* Przekazuje wartość do attribute*/
-        }
+    }
     ;
 
 attribute:
     attributeName SIGN_EQ attributeValue {
         printf("ATTRIBUTE %s: %s\n", $1, $3);
-        }
+    }
     ;
 attributes:
     attribute attributes
