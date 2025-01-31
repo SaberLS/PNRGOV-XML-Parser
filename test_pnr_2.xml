@@ -1,0 +1,49 @@
+<DaneXML>
+	<PNR xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" NumberOfPassengers="2" PNR_TransDate="2020-08-03T12:00:00" PNR_CreationDate="2020-08-02T15:09:00">
+		<BookingRefID xmlns="http://www.iata.org/IATA/2007/00" ID="Q3BQ9I">
+			<CompanyName Code="1A"/>
+		</BookingRefID>
+		<BookingRefID xmlns="http://www.iata.org/IATA/2007/00" Type="O" ID="RQAX6T">
+			<CompanyName Code="F1"/>
+		</BookingRefID>
+		<Passenger xmlns="http://www.iata.org/IATA/2007/00" RPH="1" SurnameRefNumber="20058F6D0002E3B8" AccompaniedByInfantInd="false">
+			<GivenName>TOMASZ</GivenName>
+			<Surname>NOWACKI</Surname>
+			<ContactInfo Type="8" PhoneNumber="E+TOMNOWACK@WP.PL"/>
+		</Passenger>
+		<Passenger xmlns="http://www.iata.org/IATA/2007/00" RPH="2" SurnameRefNumber="20058F6D0002E3B9" AccompaniedByInfantInd="false">
+			<GivenName>PAWEL</GivenName>
+			<Surname>ZIELINSKI</Surname>
+			<ContactInfo Type="8" PhoneNumber="E+PZIELINSK@WP.PL"/>
+		</Passenger>
+		<Flight xmlns="http://www.iata.org/IATA/2007/00" DepartureDateTime="2020-08-03T13:00:00" ArrivalDateTime="2020-08-03T15:55:00" ResBookDesigCode="V" NumberInParty="2" Status="HK" FlightNumber="1149">
+			<DepartureAirport LocationCode="MAD"/>
+			<ArrivalAirport LocationCode="FRA"/>
+			<MarketingAirline Code="LH"/>
+		</Flight>
+		<Flight xmlns="http://www.iata.org/IATA/2007/00" DepartureDateTime="2020-08-03T21:30:00" ArrivalDateTime="2020-08-03T22:40:00" ResBookDesigCode="V" NumberInParty="2" Status="HK" FlightNumber="1374">
+			<DepartureAirport LocationCode="FRA"/>
+			<ArrivalAirport LocationCode="WRO"/>
+			<Equipment AirEquipType="CR9"/>
+			<MarketingAirline Code="LH"/>
+			<CheckInInfo Time="2020-08-03T09:16:00">
+				<BoardingNumber Number="FRA-032" RPH="1">
+					<Passenger>
+						<GivenName>TOMASZ</GivenName>
+						<Surname>NOWACKI</Surname>
+					</Passenger>
+					<SeatNumber CabinClass="M">006F</SeatNumber>
+				</BoardingNumber>
+			</CheckInInfo>
+			<CheckInInfo Time="2020-08-03T09:16:00">
+				<BoardingNumber Number="FRA-033" RPH="2">
+					<Passenger>
+						<GivenName>PAWEL</GivenName>
+						<Surname>ZIELINSKI</Surname>
+					</Passenger>
+					<SeatNumber CabinClass="M">006D</SeatNumber>
+				</BoardingNumber>
+			</CheckInInfo>
+		</Flight>
+	</PNR>
+</DaneXML>
