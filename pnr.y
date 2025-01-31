@@ -17,21 +17,44 @@ int licznik_bledow=0;
 }
 
 %define parse.error verbose
-%token TAG_O TAG_C
+%token SIGN_EQ SIGN_DOUBLE_TICK
+%token CLOSING_TAG_O TAG_O SELF_CLOSING_C TAG_C
 %token <str> TEXT
-%left '='
-%left '"'
 
-%type <str> attributeName attributeValue attribute tag_name tag self_closing_tag
+%type <str> attributeName attributeValue attribute tag_name tag self_closing_tag str
 %%
+
+
 tag:
     self_closing_tag {printf("self_closing_tag\n");}
+    |   opening_tag tag_content closing_tag {printf("OPEN  CONTENT CLOSE");}
+    ;
+
+tags:
+    tag tags
+    | tag
+    ;
+
+tag_content:
+    tags
+    | TEXT
+    | /* pusty */
     ;
 
 self_closing_tag:
-    open_tag attributes TAG_C {
+    open_tag attributes SELF_CLOSING_C {
         printf("Samo Zamykający tag\n");
     }
+    ;
+
+opening_tag:
+    open_tag attributes TAG_C {printf("OPENING TAG!!\n");}
+    ;
+
+closing_tag:
+    CLOSING_TAG_O tag_name TAG_C {
+        printf("CLOSING TAG!!!\n");
+    };
     ;
 
 open_tag:
@@ -54,17 +77,22 @@ attributeName:
     ;
 
 attributeValue:
-    '"' TEXT '"' {
-        printf("attributeValue: %s\n", $2);
+    str {
+        printf("attributeValue: %s\n", $1);
+        }
+    ;
+
+str:
+    SIGN_DOUBLE_TICK TEXT SIGN_DOUBLE_TICK {
         $$ = $2;  /* Przekazuje wartość do attribute*/
         }
     ;
 
 attribute:
-    attributeName '=' attributeValue {
+    attributeName SIGN_EQ attributeValue {
         printf("ATTRIBUTE %s: %s\n", $1, $3);
         }
-
+    ;
 attributes:
     attribute attributes
     | /* pusty - pozwala na brak atrybutów */

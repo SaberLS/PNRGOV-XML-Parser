@@ -6,11 +6,14 @@ void yyerror(char *);
 
 
 %%
+"</"  {return CLOSING_TAG_O;};
 "<" {return TAG_O;};
-"/>" {return TAG_C;};
 
-"="        { return '='; }
-"\""       { return '"'; }
+"/>" {return SELF_CLOSING_C;};
+">" {return TAG_C;};
+
+"="        { return SIGN_EQ; }
+"\""       { return SIGN_DOUBLE_TICK; }
 
 [^\" =<>\t\n]+         { yylval.str = strdup(yytext); return TEXT; }
 

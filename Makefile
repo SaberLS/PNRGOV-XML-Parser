@@ -12,4 +12,4 @@ ${PROG}: ${PROG}.tab.c lex.yy.c
 	gcc -o ${PROG} ${PROG}.tab.c lex.yy.c -lfl
 
 run: ${PROG}
-	./${PROG} <test_${PROG}_3.xml
+	./${PROG} <test_${PROG}_2.xml
