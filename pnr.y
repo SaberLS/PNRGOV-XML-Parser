@@ -21,87 +21,109 @@ int licznik_bledow=0;
 %token CLOSING_TAG_O TAG_O SELF_CLOSING_C TAG_C
 %token <str> TEXT
 
-%type <str> attributeName attributeValue attribute tag_name tag self_closing_tag str
+%type <str> attributeName attributeValue attribute tag_name tag self_closing_tag open_tag attributes opening_tag closing_tag tags content
 %%
 
-
 tag:
-    self_closing_tag {
-        printf("self_closing_tag\n");
-    }
-    |   opening_tag tag_content closing_tag {
-            printf("OPEN  CONTENT CLOSE");
-        }
+    self_closing_tag {printf("%s", $1); free($1); }
+    | opening_tag content closing_tag { free($1); }
     ;
 
 tags:
     tag tags
-    |   tag
+    | tag
     ;
 
-tag_content:
+content:
     tags
-    |   TEXT
-    |   /* pusty */
+    | TEXT
+    | {;}
     ;
 
 self_closing_tag:
     open_tag attributes SELF_CLOSING_C {
-        printf("Samo Zamykający tag\n");
+        char *result = malloc(strlen($1) + strlen($2) + 3);
+        sprintf(result, "%s %s/>\n", $1, $2);
+        // printf("%s", result);
+        free($1);
+        free($2);
+
+        $$ = result;
     }
     ;
 
 opening_tag:
     open_tag attributes TAG_C {
-        printf("OPENING TAG!!\n");
+        char *result = malloc(strlen($1) + 3);
+        sprintf(result, "<%s ", $1);
+        free($1);
+        free($2);
+
+        $$ = result;
     }
     ;
 
 closing_tag:
     CLOSING_TAG_O tag_name TAG_C {
-        printf("CLOSING TAG!!!\n");
+        char *result = malloc(strlen($2) + 4);
+        sprintf(result, "</%s>", $2);
+
+        free($2);
+        $$ = result;
     }
     ;
 
 open_tag:
     TAG_O tag_name {
-        printf("Open tag: <%s\n", $2);
+        char *result = malloc(strlen($2) + 2);
+        sprintf(result, "<%s", $2);
+
+        // printf("%s", result);
+        free($2);
+        $$ = result;
     }
     ;
 
 tag_name:
-    TEXT {
-        printf("tag_name: %s\n", $1);
-    }
+    TEXT {$$ = strdup($1);}
     ;
 
 attributeName:
-    TEXT {
-        printf("attributeName: %s\n", $1);
-        $$ = $1;  /* Przekazuje wartość do attribute */
-    }
+    TEXT { $$ = strdup($1); free($1);}
     ;
 
 attributeValue:
-    str {
-        printf("attributeValue: %s\n", $1);
-    }
-    ;
-
-str:
-    SIGN_DOUBLE_TICK TEXT SIGN_DOUBLE_TICK {
-        $$ = $2;  /* Przekazuje wartość do attribute*/
-    }
+    SIGN_DOUBLE_TICK TEXT SIGN_DOUBLE_TICK { $$ = strdup($2); }
     ;
 
 attribute:
     attributeName SIGN_EQ attributeValue {
-        printf("ATTRIBUTE %s: %s\n", $1, $3);
+        char *result = malloc(strlen($1) + strlen($3) + 2);
+        sprintf(result, "%s=%s", $1, $3);
+
+        free($1);
+        free($3);
+        $$ = result;
     }
     ;
+
 attributes:
-    attribute attributes
-    | /* pusty - pozwala na brak atrybutów */
+    attributes attribute{
+        char *result = malloc(strlen($1) + strlen($2) + 2);
+        sprintf(result, "%s %s", $1, $2);
+
+        free($1);
+        free($2);
+        $$ = result;
+    }
+    |   attribute {
+        char *result = malloc(strlen($1) + 2);
+        sprintf(result, "%s", $1);
+
+        free($1);
+        $$ = result;
+    }
+    | { ; }
     ;
 
 %%

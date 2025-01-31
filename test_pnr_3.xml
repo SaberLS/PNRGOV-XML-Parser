@@ -1,3 +1,7 @@
-<BookingRefID xmlns="http://www.iata.org/IATA/2007/00" ID="Q3BQ9I">
-	<CompanyName Code="1A"/>
-</BookingRefID>
+				<BoardingNumber Number="FRA-033" RPH="2">
+					<Passenger>
+						<GivenName>PAWEL</GivenName>
+						<Surname>ZIELINSKI</Surname>
+					</Passenger>
+					<SeatNumber CabinClass="M">006D</SeatNumber>
+				</BoardingNumber>
