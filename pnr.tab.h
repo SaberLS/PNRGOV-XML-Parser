@@ -54,13 +54,14 @@ extern int yydebug;
     YYEOF = 0,                     /* "end of file"  */
     YYerror = 256,                 /* error  */
     YYUNDEF = 257,                 /* "invalid token"  */
-    SIGN_EQ = 258,                 /* SIGN_EQ  */
-    SIGN_DOUBLE_TICK = 259,        /* SIGN_DOUBLE_TICK  */
-    CLOSING_TAG_O = 260,           /* CLOSING_TAG_O  */
-    TAG_O = 261,                   /* TAG_O  */
-    SELF_CLOSING_C = 262,          /* SELF_CLOSING_C  */
-    TAG_C = 263,                   /* TAG_C  */
-    TEXT = 264                     /* TEXT  */
+    NAME = 258,                    /* NAME  */
+    SURNAME = 259,                 /* SURNAME  */
+    FLIGHT_NO = 260,               /* FLIGHT_NO  */
+    DEPARTURE_TIME = 261,          /* DEPARTURE_TIME  */
+    ARRIVAL_TIME = 262,            /* ARRIVAL_TIME  */
+    DEPARTURE_LOCATION = 263,      /* DEPARTURE_LOCATION  */
+    ARRIVAL_LOCATION = 264,        /* ARRIVAL_LOCATION  */
+    AIRLINE = 265                  /* AIRLINE  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -73,7 +74,7 @@ union YYSTYPE
 
     char *str;
 
-#line 77 "pnr.tab.h"
+#line 78 "pnr.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

@@ -1,9 +1,14 @@
-				<BoardingNumber Number="FRA-033" RPH="2">
-					<Passenger>
-						<GivenName>PAWEL</GivenName>
-						<Surname>ZIELINSKI</Surname>
-					</Passenger>
-          			<DepartureAirport LocationCode="FRA"/>
+<GivenName>TOMASZ</GivenName>
+<Surname>NOWACKI</Surname>
+<Flight
+		xmlns="http://www.iata.org/IATA/2007/00"
+		DepartureDateTime="2020-08-03T13:00:00"
+		ArrivalDateTime="2020-08-03T15:55:00"
+		ResBookDesigCode="V"
+		NumberInParty="2"
+		Status="HK"
+		FlightNumber="1149">
+    	<DepartureAirport LocationCode="FRA"/>
 			<ArrivalAirport LocationCode="WRO"/>
-					<SeatNumber CabinClass="M">006D</SeatNumber>
-				</BoardingNumber>
+			<MarketingAirline Code="LH"/>
+</Flight>
