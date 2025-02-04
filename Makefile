@@ -15,3 +15,6 @@ run: ${PROG}
 	./${PROG} <test_pnr.xml
 	./${PROG} <test_pnr_2.xml
 	./${PROG} <test_pnr_3.xml
+
+clean:
+	rm -f ${PROG} ${PROG}.tab.c ${PROG}.tab.h lex.yy.c
