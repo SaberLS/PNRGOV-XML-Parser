@@ -42,6 +42,10 @@ make
 
 Po skompilowaniu parsera można go uruchomić na pliku XML za pomocą:
 
+```bash
+./${PROG} <plik.xml
+```
+
 ### Czyszczenie kompilacji
 
 Aby usunąć pliki wynikowe kompilacji, użyj:
