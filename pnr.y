@@ -22,8 +22,7 @@ int licznik_bledow=0;
 
 %%
 flights:
-    {printf("NO FLIGHTS FOUND")}
-    | flights flight
+    flights flight
     | flight
     ;
 
@@ -33,6 +32,7 @@ flight:
 
 flight_info:
     DEPARTURE_TIME {
+        printf("\n\n------------------LOT----------------------------\n");
         printf("\n%d|\t", yylineno);
         printf("Data Odlotu:\t%s", $1);
     }
@@ -54,7 +54,7 @@ flight_info:
     }
     | AIRLINE {
         printf("\n%d|\t", yylineno);
-        printf("Linia Lotnicza:\t%s\n", $1);
+        printf("Linia Lotnicza:\t%s", $1);
     }
     ;
 flight_informations:
@@ -63,12 +63,14 @@ flight_informations:
 ;
 passenger_info:
     NAME {
+        printf("\n\n------------------PASAZEROWIE----------------------------\n");
         printf("\n%d|\t", yylineno);
-        printf("Nazwisko:\t%s", $1);
+        printf("Imie:\t%s", $1);
     }
     | SURNAME {
         printf("\n%d|\t", yylineno);
-        printf("Imie:\t%s", $1);
+        printf("Nazwisko:\t%s", $1);
+        printf("\n\n-----------------------------------------------------");
     }
 ;
 passenger_informations:
@@ -78,6 +80,7 @@ passenger_informations:
 %%
 int main() {
    yyparse();
+   printf("\n");
 }
 
 int yyerror(const char* msg) {

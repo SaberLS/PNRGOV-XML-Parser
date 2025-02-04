@@ -7,13 +7,51 @@ void yyerror(char *);
 // printf("\n%d|\t%s\n", yylineno, yytext);
 %}
 
-%x SURNAME_T NAME_T FLIGHT_T
+%x SURNAME_T NAME_T FLIGHT_T TEXT_T
+
 
 %option noyywrap
 
 %%
+<INITIAL>"<Flight " {
+    //printf("\n%d|\t%s\n", yylineno, yytext);
+    BEGIN(FLIGHT_T);
+ }
+<INITIAL>\n  {yylineno++; /* Nowa linia */}
+<INITIAL>.   {/* ignorujemy */ }
+
 <FLIGHT_T>"<Surname>" {
     BEGIN(SURNAME_T);
+}
+
+<FLIGHT_T>"<Text>/"[a-zA-Z0-9]+"/"[a-zA-Z0-9]+"/"[a-zA-Z0-9]+"/"[a-zA-Z0-9]+"/"[a-zA-Z0-9]+"/"[a-zA-Z0-9]+"/"[a-zA-Z0-9]+"/" {
+    // printf("\n%d|\tBEGIN(TEXT_T);|%s\n", yylineno, yytext);
+    BEGIN(TEXT_T);
+}
+
+<TEXT_T>[A-Z]+ {
+    yylval.str = strdup(yytext); return SURNAME;
+}
+
+<TEXT_T>[A-Z]+"<" {
+    int len = strlen(yytext);
+    char *copy = (char *)malloc(len - 1);
+    if(copy == NULL) {
+        fprintf(stderr, "Błąd alokacji pamięci\n");
+        exit(1);
+    }
+    strncpy(copy, yytext, len-1);
+    copy[len - 1] = '\0';
+
+    yylval.str = copy;
+    return NAME;
+}
+
+<TEXT_T>\n  {yylineno++; /* Nowa linia */}
+<TEXT_T>.   {/* ignorujemy */ }
+<TEXT_T>"/Text>" {
+    // printf("\n%d|\tBEGIN(FLIGHT_T);|%s\n", yylineno, yytext);
+    BEGIN(FLIGHT_T);
 }
 
 <SURNAME_T>[a-zA-Z]+ {yylval.str = strdup(yytext); return SURNAME;}
@@ -23,6 +61,7 @@ void yyerror(char *);
 
 <SURNAME_T>"</Surname>" { BEGIN(FLIGHT_T);}
 
+
 <FLIGHT_T>"<GivenName>" {BEGIN(NAME_T);}
 <NAME_T>[a-zA-Z]+ {yylval.str = strdup(yytext); return NAME;}
 
@@ -30,9 +69,6 @@ void yyerror(char *);
 <NAME_T>.   {/* ignorujemy */ }
 <NAME_T>"</GivenName>" { BEGIN(FLIGHT_T);}
 
-
-
-<INITIAL>"<Flight" { BEGIN(FLIGHT_T);}
 
 <FLIGHT_T>"FlightNumber=\""[0-9]+"\"" {
     int len = strlen(yytext);
@@ -124,7 +160,3 @@ void yyerror(char *);
 <FLIGHT_T>.   {/* ignorujemy */ }
 
 <FLIGHT_T>"</Flight>" { BEGIN(INITIAL);}
-
-
-<INITIAL>\n  {yylineno++; /* Nowa linia */}
-<INITIAL>.   {/* ignorujemy */ }

@@ -513,8 +513,8 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    25,    25,    26,    30,    34,    38,    42,    46,    50,
-      54,    60,    61,    64,    68,    74,    75
+       0,    25,    25,    26,    30,    34,    39,    43,    47,    51,
+      55,    61,    62,    65,    70,    77,    78
 };
 #endif
 
@@ -1355,77 +1355,80 @@ yyreduce:
   case 5: /* flight_info: DEPARTURE_TIME  */
 #line 34 "pnr.y"
                    {
+        printf("\n\n------------------LOT----------------------------\n");
         printf("\n%d|\t", yylineno);
         printf("Data Odlotu:\t%s", (yyvsp[0].str));
     }
-#line 1362 "pnr.tab.c"
+#line 1363 "pnr.tab.c"
     break;
 
   case 6: /* flight_info: ARRIVAL_TIME  */
-#line 38 "pnr.y"
+#line 39 "pnr.y"
                    {
         printf("\n%d|\t", yylineno);
         printf("Data Przylotu:\t%s", (yyvsp[0].str));
     }
-#line 1371 "pnr.tab.c"
+#line 1372 "pnr.tab.c"
     break;
 
   case 7: /* flight_info: FLIGHT_NO  */
-#line 42 "pnr.y"
+#line 43 "pnr.y"
                 {
         printf("\n%d|\t", yylineno);
         printf("Numer Lotu:\t%s", (yyvsp[0].str));
     }
-#line 1380 "pnr.tab.c"
+#line 1381 "pnr.tab.c"
     break;
 
   case 8: /* flight_info: DEPARTURE_LOCATION  */
-#line 46 "pnr.y"
+#line 47 "pnr.y"
                          {
         printf("\n%d|\t", yylineno);
         printf("Lotnisko Odlotu:\t%s", (yyvsp[0].str));
     }
-#line 1389 "pnr.tab.c"
+#line 1390 "pnr.tab.c"
     break;
 
   case 9: /* flight_info: ARRIVAL_LOCATION  */
-#line 50 "pnr.y"
+#line 51 "pnr.y"
                        {
         printf("\n%d|\t", yylineno);
         printf("Lotnisko Przylotu:\t%s", (yyvsp[0].str));
     }
-#line 1398 "pnr.tab.c"
+#line 1399 "pnr.tab.c"
     break;
 
   case 10: /* flight_info: AIRLINE  */
-#line 54 "pnr.y"
+#line 55 "pnr.y"
               {
         printf("\n%d|\t", yylineno);
-        printf("Linia Lotnicza:\t%s\n", (yyvsp[0].str));
+        printf("Linia Lotnicza:\t%s", (yyvsp[0].str));
     }
-#line 1407 "pnr.tab.c"
+#line 1408 "pnr.tab.c"
     break;
 
   case 13: /* passenger_info: NAME  */
-#line 64 "pnr.y"
+#line 65 "pnr.y"
          {
-        printf("\n%d|\t", yylineno);
-        printf("Nazwisko:\t%s", (yyvsp[0].str));
-    }
-#line 1416 "pnr.tab.c"
-    break;
-
-  case 14: /* passenger_info: SURNAME  */
-#line 68 "pnr.y"
-              {
+        printf("\n\n------------------PASAZEROWIE----------------------------\n");
         printf("\n%d|\t", yylineno);
         printf("Imie:\t%s", (yyvsp[0].str));
     }
-#line 1425 "pnr.tab.c"
+#line 1418 "pnr.tab.c"
+    break;
+
+  case 14: /* passenger_info: SURNAME  */
+#line 70 "pnr.y"
+              {
+        printf("\n%d|\t", yylineno);
+        printf("Nazwisko:\t%s", (yyvsp[0].str));
+        printf("\n\n-----------------------------------------------------");
+    }
+#line 1428 "pnr.tab.c"
     break;
 
 
-#line 1429 "pnr.tab.c"
+#line 1432 "pnr.tab.c"
 
       default: break;
     }
@@ -1649,10 +1652,11 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 77 "pnr.y"
+#line 80 "pnr.y"
 
 int main() {
    yyparse();
+   printf("\n");
 }
 
 int yyerror(const char* msg) {

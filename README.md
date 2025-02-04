@@ -22,12 +22,12 @@ Ten projekt implementuje parser do przetwarzania danych PNRGOV XML (Passenger Na
 
 ## Checklista implementacji
 
-- [ ] Wczytanie i analiza pliku PNRGOV XML
-- [ ] Parsowanie danych pasażerów (Nazwisko, Imię)
-- [ ] Parsowanie danych lotów (daty, lotniska, linie lotnicze, nr lotu)
-- [ ] Obsługa błędów w strukturze pliku
-- [ ] Testowanie na przykładowych danych
-- [ ] Formatowanie wyników w czytelnej postaci
+- [x] Wczytanie i analiza pliku PNRGOV XML
+- [x] Parsowanie danych pasażerów (Nazwisko, Imię)
+- [x] Parsowanie danych lotów (daty, lotniska, linie lotnicze, nr lotu)
+- [x] Obsługa błędów w strukturze pliku
+- [x] Testowanie na przykładowych danych
+- [x] Formatowanie wyników w czytelnej postaci
 
 ## Źródła
 

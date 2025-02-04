@@ -12,4 +12,6 @@ ${PROG}: ${PROG}.tab.c lex.yy.c
 	gcc -o ${PROG} ${PROG}.tab.c lex.yy.c -lfl
 
 run: ${PROG}
+	./${PROG} <test_pnr.xml
 	./${PROG} <test_pnr_2.xml
+	./${PROG} <test_pnr_3.xml
