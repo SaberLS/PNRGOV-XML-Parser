@@ -4,7 +4,7 @@
 
 Ten projekt implementuje parser do przetwarzania danych PNRGOV XML (Passenger Name Record). Dane PNR zawierają informacje o pasażerach linii lotniczych, takie jak imię, nazwisko, trasa podróży, numer lotu i inne szczegóły. Parser ma za zadanie wyodrębnić kluczowe informacje i przedstawić je w czytelnej formie.
 
-## Wymagania
+## Cel
 
 - Parser powinien obsługiwać format PNRGOV XML.
 - Powinien wydobywać informacje o pasażerach oraz ich lotach.
@@ -19,6 +19,36 @@ Ten projekt implementuje parser do przetwarzania danych PNRGOV XML (Passenger Na
     - Lotnisko przylotu (**ArrivalAirport**)
     - Linia lotnicza (**MarketingAirline**)
     - Nr lotu (**FlightNumber**)
+
+## Instrukcja
+
+### Wymagania
+
+- Przed uruchomieniem parsera upewnij się, że masz zainstalowane następujące narzędzia:
+  - `flex`
+  - `bison`
+  - `gcc`
+  - `make`
+
+### Budowanie parsera
+
+Aby skompilować parser, użyj komendy:
+
+```bash
+make
+```
+
+### Uruchamianie parsera
+
+Po skompilowaniu parsera można go uruchomić na pliku XML za pomocą:
+
+### Czyszczenie kompilacji
+
+Aby usunąć pliki wynikowe kompilacji, użyj:
+
+```bash
+make clean
+```
 
 ## Checklista implementacji
 
